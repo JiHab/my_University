@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block table %}
+{% for group in groups%}
+    <tr><td>{{group.name}}</td><td>{{group.monitor}}</td></tr>
+    {% for stud in students%}
+        {% ifequal stud.group_s group %}
+        <tr><td>{{stud.name}}</td><td>{{stud.group_s}}</td></tr>
+
+        {% endifequal %}
+    {% endfor %}
+{% endfor %}
+{% endblock %}
