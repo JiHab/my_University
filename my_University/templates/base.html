@@ -41,6 +41,15 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+
+              {% if username%}
+              <button class="btn btn-primary " data-toggle="modal" data-target="#myModal"> Logout </button>
+              {% else%}
+              <button class="btn btn-primary " data-toggle="modal" data-target="#myModal">Login</button>
+              {% endif%}
+
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -58,6 +67,45 @@
     </div><!-- /.container -->
 
 
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+      <div class="modal-body">
+       <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+          <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+          <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Checkbox
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </fieldset>
+
+        <button type="submit" formaction="/log" class="btn btn-primary">Login</button>
+
+  </form>
+      </div>
+
+    </div>
+  </div>
+</div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
