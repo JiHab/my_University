@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<table class="table table-hover" id="report">
-{% for group in groups%}
+    <table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>Group</th>
+            <th>monitor</th>
+        </tr>
+    </thead>
 
-    <tr><td>{{group.name}}</td><td>{{group.monitor}}</td></tr>
-    {% for stud in students%}
-        {% ifequal stud.group_s group %}
-        <tr><td>{{stud.name}}</td><td>{{stud.group_s}}</td></tr>
+    {% for group in groups%}
+    <tr><td><a href="/details/{{group.pk}}">{{group.name}}</a></td><td>{{group.monitor}}</td>
+        {% if is_admin%}
+            <td><a href="/admin/my_University/group/{{group.pk}}/change/">edit</a></td></tr>
+        {% endif%}
 
-        {% endifequal %}
-    {% endfor %}
 {% endfor %}
 </table>
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>Group</th>
+            <th>Monitor: {{monitor}}</th>
+        </tr>
+    </thead>
+
+    {% for student in students%}
+    <tr><td>{{student.name}}</td><td>{{student.user.is_authenticated}}</td>
+        {% if is_admin%}
+            <td><a href="/admin/my_University/student/{{student.pk}}/change/">edit</a></td></tr>
+        {% endif%}
+        <!--{% if username%}-->
+            <!--<td></td></tr>-->
+        <!--{% endif%}-->
+
+{% endfor %}
+</table>
+{% endblock %}

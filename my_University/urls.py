@@ -17,12 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from my_University.models import Group
 
-allGroups = Group.object.all()
+allGroups = Group.objects.all()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/', 'my_University.views.login'),
     url(r'^logout/', 'my_University.views.logout'),
     url(r'^reg/', 'my_University.views.registration'),
-    # url(r'^auth/', 'my_University.views.auth'),
+    url(r'^details/(?P<id>\w*)', 'my_University.views.details'),
+    # url(r'^details/(?P<groupstr>\w+)', 'my_University.views.details'),
     url(r'^$', 'my_University.views.home', name='home')
 ]

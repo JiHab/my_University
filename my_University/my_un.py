@@ -1,3 +1,5 @@
+import re
+
 from my_University.models import Group, Student, User
 
 
@@ -19,7 +21,14 @@ def check_data_and_register(request):
     b_date = request.POST.get('b_date', '')
     email = request.POST.get('email', '')
     name = request.POST.get('name', '')
-
+    groupstr = request.POST.get('group', '')
+    group = Group.objects.filter(name=groupstr)[0]
+    em = re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email.lstrip().rstrip())
+    if em is None and email != '':
+        r['error'] = True
+        r['error_text'] = 'Email si invalid'
+        return r
+    print(type(group))
     if username.lstrip().rstrip() is '':
         r['error'] = True
         r['error_text'] = 'Enter your nickname'
@@ -46,8 +55,9 @@ def check_data_and_register(request):
     user = User()
     user.username = username
     user.email = email
-    user.password = password1
-    # user.backend = 'django.contrib.auth.backends.ModelBackend'
+    # user.password = password1
+    user.set_password(password1)
+    user.backend = 'django.contrib.auth.backends.ModelBackend'
     try:
         user.save()
     except:
@@ -59,6 +69,7 @@ def check_data_and_register(request):
     student.name = name
     student.date_birth = b_date
     student.user = user
+    student.group_s = group
     try:
         student.save()
     except:

@@ -17,17 +17,17 @@
                   </div>
                </div>
 
-               <div class="form-group">
+                <div class="form-group">
                   <label for="username" class="col-lg-2 control-label">Nickname</label>
                   <div class="col-lg-10">
-                     <input type="text" class="form-control" id="username" name="username" placeholder="Email">
+                     <input type="text" class="form-control" id="username" name="username" placeholder="Nickname">
                   </div>
                </div>
 
                <div class="form-group">
-                  <label for="name" class="col-lg-2 control-label">Name</label>
+                  <label for="name" class="col-lg-2 control-label">Your name</label>
                   <div class="col-lg-10">
-                     <input type="text" class="form-control" id="name" name="name" placeholder="Email">
+                     <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                   </div>
                </div>
 
@@ -60,14 +60,12 @@
                </div>
 
               <div class="form-group">
-               <label for="select" class="col-lg-2 control-label">Selects</label>
+               <label for="group" class="col-lg-2 control-label">Group</label>
                <div class="col-lg-10">
-                 <select class="form-control" id="select">
-                   <option>1</option>
-                   <option>2</option>
-                   <option>3</option>
-                   <option>4</option>
-                   <option>5</option>
+                 <select class="form-control" id="group" name="group">
+                     {% for group in groups%}
+                     <option value= "{{group.name}}">{{group.name}}</option>
+                     {% endfor %}
                  </select>
                </div>
               </div>

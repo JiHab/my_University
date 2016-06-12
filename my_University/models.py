@@ -5,7 +5,7 @@ defuser = User.objects.get(id=1)
 
 
 class Group(models.Model):
-    name = models.CharField(max_length=100, primary_key=True)
+    name = models.CharField(max_length=100,  unique=True)
     monitor = models.ForeignKey('Student', blank=True, null=True)
 
     def __str__(self):
