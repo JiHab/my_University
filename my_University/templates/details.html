@@ -15,7 +15,7 @@
     {% for student in students%}
     <tr><td>{{student.name}}</td><td>{{student.user.is_authenticated}}</td>
         {% if is_admin%}
-            <td><a href="/admin/my_University/student/{{student.pk}}/change/">edit</a></td></tr>
+            <td><a href="/admin/my_University/student/{{student.pk}}/change/">edit</a></td>
         {% endif%}
             <td><a href="/call/">call</a></td></tr>
         <!--{% if username%}-->
