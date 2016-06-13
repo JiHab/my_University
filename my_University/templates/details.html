@@ -6,6 +6,9 @@
         <tr>
             <th>Group</th>
             <th>Monitor: {{monitor}}</th>
+            {% if is_admin%}
+            <th><a href="/admin/my_University/student/add/">add+</a></th>
+            {% endif%}
         </tr>
     </thead>
 
@@ -14,6 +17,7 @@
         {% if is_admin%}
             <td><a href="/admin/my_University/student/{{student.pk}}/change/">edit</a></td></tr>
         {% endif%}
+            <td><a href="/call/">call</a></td></tr>
         <!--{% if username%}-->
             <!--<td></td></tr>-->
         <!--{% endif%}-->

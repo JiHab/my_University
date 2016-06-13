@@ -6,6 +6,9 @@
         <tr>
             <th>Group</th>
             <th>monitor</th>
+            {% if is_admin%}
+            <th><a href="/admin/my_University/group/add/">add+</a></th>
+            {% endif%}
         </tr>
     </thead>
 

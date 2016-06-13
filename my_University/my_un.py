@@ -10,6 +10,14 @@ def get_groups():
         print(students)
 
 
+def get_user_by_email(email):
+    # print(email)
+    try:
+        user = User.objects.get(email=email.lower())
+        return user
+    except:
+        return None
+
 def check_data_and_register(request):
 
     r = {}
@@ -24,11 +32,12 @@ def check_data_and_register(request):
     groupstr = request.POST.get('group', '')
     group = Group.objects.filter(name=groupstr)[0]
     em = re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email.lstrip().rstrip())
+
     if em is None and email != '':
         r['error'] = True
         r['error_text'] = 'Email si invalid'
         return r
-    print(type(group))
+
     if username.lstrip().rstrip() is '':
         r['error'] = True
         r['error_text'] = 'Enter your nickname'
@@ -54,7 +63,7 @@ def check_data_and_register(request):
 
     user = User()
     user.username = username
-    user.email = email
+    user.email = email.lower()
     # user.password = password1
     user.set_password(password1)
     user.backend = 'django.contrib.auth.backends.ModelBackend'

@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^reg/', 'my_University.views.registration'),
     url(r'^details/(?P<id>\w*)', 'my_University.views.details'),
     # url(r'^details/(?P<groupstr>\w+)', 'my_University.views.details'),
+    url(r'^call/', 'my_University.views.call'),
     url(r'^$', 'my_University.views.home', name='home')
 ]

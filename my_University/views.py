@@ -2,10 +2,12 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, render_to_response, redirect
 from django.contrib import auth
+
+
 from my_University.models import Group, Student
 from django.core.context_processors import csrf
 
-from my_University.my_un import check_data_and_register
+from my_University.my_un import check_data_and_register, get_user_by_email
 
 
 def home(request):
@@ -23,19 +25,26 @@ def home(request):
     for gr in groups:
         print(gr.pk)
 
-    return render(request, 'dial.html', context)
+    return render(request, 'home.html', context)
 
 
 def login(request):
     args = {}
     args.update(csrf(request))
     if request.POST:
-        username = request.POST.get('username', '')
+        username = request.POST.get('email', '')
         password = request.POST.get('password', '')
-        user = auth.authenticate(username=username, password=password)
-        if user is not None:
+
+        user_ = get_user_by_email(username)
+        print(user_)
+        if user_ is not None:
+            user = auth.authenticate(username=user_.username, password=password)
+            if user_ is not None:
                 auth.login(request, user)
                 return redirect('/')
+            else:
+                args['login_error'] = "user is not found"
+                return render_to_response('login.html', args)
         else:
                     args['login_error'] = "user is not found"
                     return render_to_response('login.html', args)
@@ -88,6 +97,10 @@ def details(request, id):
     }
 
     return render(request, 'details.html', context)
+
+
+def call(request):
+    return render(request, 'call.html')
 
 
 
